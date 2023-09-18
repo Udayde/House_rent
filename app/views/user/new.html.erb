@@ -1,0 +1,37 @@
+<table class="table">
+<h1>List of Building</h1>
+<%= notice%>
+
+  <thead>
+    <tr>
+      <th scope="col">sr.no</th>
+      <th scope="col">type</th>
+      <th scope="col">location</th>
+      <th scope="col">buying_price</th>
+       <th scope="col">rental_price</th>
+      <th scope="col" > Action</th>
+    </tr>
+  </thead>
+  <tbody>
+ <% @house.each do|house| %>
+    <tr>
+      <th scope="row"><%= house.id%></th>
+      <td><%= house.desription%></td>
+      <td><%= house.location %></td>
+      <td><%= house.buying_price %></td>
+      <td><%= house.rental_price %></td>
+      <td ><%= link_to 'view',house_path(house), class: "badge bg-primary"%>
+      <% if can? :update , house%>
+        <%= link_to 'edit',edit_house_path(house), class: "badge bg-info"%>
+        
+        <%= link_to 'Delete',house,data:{turbo_method: :delete ,turbo_confirm:'Are you sure'}, class: "badge bg-danger"%></td>
+
+       <%end%>
+       <% if can? :destroy , house%>
+        <%= link_to 'Delete',house,data:{turbo_method: :delete ,turbo_confirm:'Are you sure'}, class: "badge bg-danger"%></td>
+       <%end%>
+    </tr>
+<% end %>
+    </tr>
+  </tbody>
+</table>

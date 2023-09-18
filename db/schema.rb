@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_175344) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_13_160432) do
   create_table "houses", force: :cascade do |t|
-    t.string "type"
+    t.string "desription"
     t.string "location"
     t.integer "buying_price"
     t.integer "rental_price"
@@ -30,6 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_175344) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role", default: "user"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

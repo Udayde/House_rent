@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
-  root to: 'moderator#index'
-  resources :moderator
+  # root "articles#index"z
+  root to: 'houses#index'
+
+  resources :houses
+  resources :payments
 end

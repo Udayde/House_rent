@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ModeratorControllerTest < ActionDispatch::IntegrationTest
+class HouseControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

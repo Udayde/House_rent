@@ -1,0 +1,26 @@
+
+
+<%= form_with model: @house do |form| %>
+    <div>
+        <%=form.label :description %>   
+        <%=form.text_field :desription %>
+    </div>
+    <br>
+
+    <div>
+        <%=form.label :location %>
+        <%=form.text_field :location%>
+    </div>
+    <br>
+
+    <div>
+        <%=form.label :buying_price %>
+        <%=form.number_field :buying_price%>
+    </div><br>
+
+    <div>
+        <%=form.label :rental_price %>
+        <%=form.number_field :rental_price%>
+    </div><br>
+    <%= form.submit class: 'btn btn-primary'%>
+<% end %>

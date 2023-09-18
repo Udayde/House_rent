@@ -1,0 +1,39 @@
+<h1>House For Rent </h1>
+
+ 
+   <%= link_to 'Create', new_house_path,  class: "btn btn-primary m-1"%> 
+<% @house.each do|house| %>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+ 
+      <div class="col-md-4">
+       <img src="..." class="img-fluid rounded-start" alt="...">
+       </div>
+          <div class="col-md-8">
+             <div class="card-body">
+        
+ 
+              <p><strong> Description:</strong><%= house.desription%></p>
+              <p><strong>Location:</strong><%= house.location%></p>
+              <div class="d-inline-flex ">
+              
+                <a href=<%="houses/#{house.id}"%> class="btn btn-primary m-1">view</a>
+                  <% if can? :update , House%>
+                    <a href="#" class="btn btn-primary m-1">edit</a>
+                    <%= link_to 'Delete', house_path(house), data: {turbo_method: :delete}, class: 'btn btn-danger m-1' %>
+                  <%end%>
+              </div>
+
+
+    
+                 <p class="card-text"><small class="text-muted">last updated at <%= time_ago_in_words(house.updated_at) %> ago</small></small></p>
+           </div>
+    </div>
+      
+  </div>
+ 
+</div>
+</div>
+<% end %>
+
+  

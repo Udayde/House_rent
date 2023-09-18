@@ -1,0 +1,12 @@
+<h1>User Details</h1>
+<%= notice%>
+<div class='border border-primary bg-warning w-45 text-center'>
+<p><strong> Name:</strong><%= @user.name%></p>
+<p><strong>Role:</strong><%= @user.role%></p>
+<p><strong>Email:</strong><%= @user.email%></p>
+</div>
+<div class='d-flex'>
+<%= link_to 'Back', new_user_session, class: 'me-3' %>
+
+<%= link_to 'edit',edit_user_path(@user) %>
+</div>

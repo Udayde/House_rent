@@ -1,17 +1,43 @@
 class UserController < ApplicationController
     def index 
-        @house=House.all
+        @user=User.all
+    end
+
+
+    def new
+        @user=User.new
+    end
+
+    def create
+        @user=User.new(user_param)
+         @user.save 
+            
+    end
+
+    def edit 
+        @user=User.find(params[:id])
+    end
+
+    def update
+        @user=User.find(params[:id])
+        @user.update(user_param)
+    end
+
+    def destroy 
+        @user=User.find(params[:id])
+        @user.destroy
     end
 
     def show 
-        @house=House.find(params[:id])
+        @user=House.find(params[:id])
     end
+
 
     private
 
-        def  house_param 
-             params.required(:house).permit(:type ,:location, :buying_price ,:rental_price)
+        def  user_param 
+             params.required(:user).permit(:email ,:encrypted_password, :role ,:name)
         end
-    end
+    
 
 end

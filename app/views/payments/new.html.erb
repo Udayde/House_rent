@@ -1,0 +1,14 @@
+<%= form_tag payments_path do %>
+  <% amount = House.find(params[:id]).rental_price %>
+  <label class="amount">
+      <span>Amount: <%= amount %> rs</span>
+  </label>
+
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="A month's subscription"
+    data-amount="<%= amount*100 %>"
+    data-locale="auto">
+  </script>
+<% end %>

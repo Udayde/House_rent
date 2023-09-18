@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+ .background-img{
+    background-image: url('https://c1.wallpaperflare.com/preview/428/188/967/brick-house-houston-texas-lawn.jpg');
+    height: 100vh;
+    background-size: cover;
+ }
+   
