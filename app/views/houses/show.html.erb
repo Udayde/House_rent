@@ -10,7 +10,7 @@
     <li class="list-group-item">House Type: <%= @house.desription%></li>
     <li class="list-group-item">Site location: <%= @house.location%></li>
     <li class="list-group-item">For Buy: <%= @house.buying_price%>Rs</li>
-     <%= link_to 'Payment', new_payment_path,  class: "btn btn-primary m-1"%> 
+     <%= link_to 'Payment', "#{new_payment_path}?id=#{@house.id}",  class: "btn btn-primary m-1"%> 
      <li class="list-group-item">For Rent: <%= @house.rental_price%>Rs</li>
       <%= link_to 'Payment', "#{new_payment_path}?id=#{@house.id}",  class: "btn btn-primary m-1"%> 
   </ul>

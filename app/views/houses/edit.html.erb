@@ -1,31 +1,33 @@
 
 
-
-<%= form_with(model:@)house do |form| %>
+<%= form_with model:@house do |form| %>
 <div>
 <%=form.label :description %>
-<%=form.text_field:desription%>
+<%=form.text_field :desription%>
 </div>
 <br>
 
 <div>
 <%=form.label :location %>
-<%=form.text_field:location%>
+<%=form.text_field :location%>
 </div>
 <br>
-
-
-
+ 
 <div>
 <%=form.label :buying_price %>
-<%=form.number_field:buying_price%>
+<%=form.number_field :buying_price%>
 </div><br>
 
 <div>
 <%=form.label :rental_price %>
-<%=form.number_field:rental_price%>
+<%=form.number_field :rental_price%>
 </div><br>
 
+<div>
+        <%=form.label :profile_image %>
+        <%=form.file_field :profile_image %>
+    </div><br>
 
-<center><%= form.submit class: 'btn btn-primary'%></center>
+
+<%= form.submit class: 'btn btn-primary'%>
 <% end %>

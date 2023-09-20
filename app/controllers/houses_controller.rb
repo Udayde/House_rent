@@ -27,7 +27,11 @@ class HousesController < ApplicationController
 
     def update
         @house=House.find(params[:id])
-        @house.update(house_param)
+        @house.profile_image.attach(params[:house][:profile_image])
+        if @house.update(house_param)
+            flash[:notice] = 'success update!'
+            redirect_to houses_path
+        end
     end
 
     def destroy 
@@ -43,18 +47,13 @@ class HousesController < ApplicationController
 
     private
 
-        def house_param
-            res = params.required(:house).permit(:desription ,:location, :buying_price ,:rental_price)
-						res[:user_id] = current_user.id
-						res
-        end
+    def house_param
+        res = params.required(:house).permit(:desription ,:location, :buying_price ,:rental_price)
+                    res[:user_id] = current_user.id
+                    res
+    end
 
 end
 
 
 
-
-# rough
-
-# direct 
-# referal 

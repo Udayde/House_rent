@@ -1,8 +1,10 @@
 class PaymentsController < ApplicationController
     def new
+      @amount = House.find_by(id: params[:id]).rental_price
     end
     
     def create
+      #debugger
       customer = Stripe::Customer.create({
         :email => params[:stripeEmail],
         :source => params[:stripeToken]
@@ -15,10 +17,14 @@ class PaymentsController < ApplicationController
         :description => 'Description of your product',
         :currency => 'usd'
       })
-    
-      rescue Stripe::CardError => e
-        flash[:error] = e.message
-        redirect_to new_payment_path
+      if charge
+        
+        flash[:alert]="payment sucessful"
+      end
+
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to new_payment_path
     end
   
 end

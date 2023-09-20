@@ -7,24 +7,24 @@
   <div class="row g-0">
  
       <div class="col-md-4">
-       <img src="..." class="img-fluid rounded-start" alt="...">
+      <% if house.profile_image.attached? %>
+       <img src="<%= (url_for(house.profile_image)) %>" class="img-fluid rounded-start" alt="image_house">
+      <% end %>
        </div>
           <div class="col-md-8">
              <div class="card-body">
         
- 
+                                                                          
               <p><strong> Description:</strong><%= house.desription%></p>
               <p><strong>Location:</strong><%= house.location%></p>
               <div class="d-inline-flex ">
               
-                <a href=<%="houses/#{house.id}"%> class="btn btn-primary m-1">view</a>
+                <a href=<%=house_path (house)%> class="btn btn-primary m-1">view</a>
                   <% if can? :update , House%>
-                    <a href="#" class="btn btn-primary m-1">edit</a>
+                    <a href=<%=edit_house_path (house)%> class="btn btn-primary m-1">edit</a>
                     <%= link_to 'Delete', house_path(house), data: {turbo_method: :delete}, class: 'btn btn-danger m-1' %>
                   <%end%>
               </div>
-
-
     
                  <p class="card-text"><small class="text-muted">last updated at <%= time_ago_in_words(house.updated_at) %> ago</small></small></p>
            </div>
