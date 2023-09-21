@@ -1,9 +1,7 @@
 class PaymentsController < ApplicationController
     before_action :set_amount
     def new
-
       @is_sold = House.find(params[:id]).sold if params[:id].present?
-
     end
     
     def create
@@ -19,17 +17,22 @@ class PaymentsController < ApplicationController
         :amount => @amount*100,
         :description => 'Description of your product',
         :currency => 'usd'
+       
       })
+      # flash[:alert]="payment sucessful"
       if charge
         @house = House.find(params[:id])
         @house.sold = true
         @house.save
-      end
+    
+        redirect_to houses_path,alert: 'payment success'
+      else
       # session = Stripe::Checkout::Session.create( 
       #   success_url:  payments_success_url,
       #   cancel_url: payments_cancel_url
       #  )
        redirect_to new_payment_path
+      end
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
@@ -38,7 +41,6 @@ class PaymentsController < ApplicationController
 
     private
   def set_amount
-    return if params[:id].blank?
     @house = House.find(params[:id])
     if @house.available_for == "buy"
       @amount = @house.buying_price
