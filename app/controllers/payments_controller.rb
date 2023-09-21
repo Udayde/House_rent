@@ -1,10 +1,13 @@
 class PaymentsController < ApplicationController
+    before_action :set_amount
     def new
-      @amount = House.find_by(id: params[:id]).rental_price
+
+      @is_sold = House.find(params[:id]).sold if params[:id].present?
+
     end
     
     def create
-      #debugger
+      #debugger@ = House.find()
       customer = Stripe::Customer.create({
         :email => params[:stripeEmail],
         :source => params[:stripeToken]
@@ -13,18 +16,47 @@ class PaymentsController < ApplicationController
       
       charge = Stripe::Charge.create({
         :customer => customer.id,
-        :amount => (House.find(params[:id]).rental_price)*100,
+        :amount => @amount*100,
         :description => 'Description of your product',
         :currency => 'usd'
       })
       if charge
-        
-        flash[:alert]="payment sucessful"
+        @house = House.find(params[:id])
+        @house.sold = true
+        @house.save
       end
+      # session = Stripe::Checkout::Session.create( 
+      #   success_url:  payments_success_url,
+      #   cancel_url: payments_cancel_url
+      #  )
+       redirect_to new_payment_path
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to new_payment_path
     end
-  
+
+    private
+  def set_amount
+    return if params[:id].blank?
+    @house = House.find(params[:id])
+    if @house.available_for == "buy"
+      @amount = @house.buying_price
+    else
+      @amount = @house.rental_price
+    end
+  end
+
+
+
+# def payments_success_url
+#   #handle successful payments
+#   # redirect_to root_url, notice: "Purchase Successful"
+#   p 'success ----------------------'
+# end
+
+# def payments_cancel_url
+#   #handle if the payment is cancelled
+#   redirect_to new_payment_path, notice: "Purchase Unsuccessful"
+# end
 end

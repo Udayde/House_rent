@@ -8,19 +8,31 @@
     <br>
 
     <div>
-        <%=form.label :location %>
+           <%=form.label :location %>
         <%=form.text_field :location%>
     </div>
     <br>
+    <div>
+        <%=form.label :available_for %>
+        <select name="house[available_for]">
+           <option value="buy" >buy</option>
+           <option value="rent">rent</option>
+        </select>
+    </div>
+    
 
     <div>
         <%=form.label :buying_price %>
         <%=form.number_field :buying_price%>
     </div><br>
-
     <div>
         <%=form.label :rental_price %>
         <%=form.number_field :rental_price%>
+    </div><br>
+
+    <div>
+        <%=form.label :profile_image %>
+        <%=form.file_field :profile_image %>
     </div><br>
 
     

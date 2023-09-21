@@ -7,7 +7,7 @@ class Ability
     can :read, House
    
     return if user.client?
-    # can :update, House
+    can :update, House
     # can :update , House
     can :manage , :all
     return if user.moderator?

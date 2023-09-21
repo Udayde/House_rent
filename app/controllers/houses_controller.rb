@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-    # load_and_authorize_resource
+    authorize_resource
 
     def index 
         @house=House.all
@@ -12,6 +12,7 @@ class HousesController < ApplicationController
 
     def create
 			@house=House.new(house_param)
+            @house.profile_image.attach(params[:house][:profile_image])
 			if @house.save
 				flash[:notice] = 'success registeration!'
 				redirect_to houses_path
@@ -48,7 +49,8 @@ class HousesController < ApplicationController
     private
 
     def house_param
-        res = params.required(:house).permit(:desription ,:location, :buying_price ,:rental_price)
+        #debugger
+        res = params.require(:house).permit(:desription ,:location, :buying_price ,:rental_price,:available_for)
                     res[:user_id] = current_user.id
                     res
     end
