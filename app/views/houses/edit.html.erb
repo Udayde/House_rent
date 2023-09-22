@@ -1,5 +1,5 @@
 
-
+<%=render "share/logoutbutton"%>
 <%= form_with model:@house do |form| %>
 <div>
 <%=form.label :description %>
@@ -22,6 +22,16 @@
 <%=form.label :rental_price %>
 <%=form.number_field :rental_price%>
 </div><br>
+
+
+    <div>
+        <%=form.label :sold %>
+        <select name="house[sold]">
+           <option value=true>sold</option>
+           <option value=false>unsold</option>
+        </select>
+    </div>
+    
 
 <div>
         <%=form.label :profile_image %>

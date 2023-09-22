@@ -3,17 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :houses
+  has_many :houses, dependent: :destroy
 
-  def admin?
-    self.role=='admin'
-  end
-
-  def client?
-    self.role=='user'
-  end
-
-  def moderator?
-    self.role=='moderator'
-  end
+  enum :role, {user:0,moderator:1,admin:2}
 end
