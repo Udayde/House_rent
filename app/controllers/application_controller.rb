@@ -10,7 +10,7 @@ rescue_from CanCan::AccessDenied do |exception|
     render json: 'un authorized!'
   end
 
-rescue_from NoMethodError, with: :handle_no_method_error
+# rescue_from NoMethodError, with: :handle_no_method_error
 
 private
 

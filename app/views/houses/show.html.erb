@@ -1,6 +1,6 @@
-<h1>Property Details</h1>
-
-<div class="card border-success mb-3" style="width: 18rem;">
+<%
+=begin%>
+ <div class="card border-success mb-3" style="width: 18rem;">
 
   <div class="card-header">  Details</div>
   
@@ -28,4 +28,63 @@
         <%= link_to 'edit',edit_house_path(@house) %>
        <%end%>
     </div>
-</div>
+</div> 
+<%
+=end%>
+
+<style>
+  .h-half{
+    height:50vh;
+  }
+
+  .prop-img{
+    height : 400px;
+  }
+  .item-wrapper {
+    background-color: transparent !important;
+    border: none !important;
+  }
+</style>
+
+<section data-bs-version="5" class="features7 cid-sHbZFN6Ckx" id="features07-4">
+    
+    
+    <div class="container">
+
+        <div class="row row-bg mt-4">
+            <div class="mbr-section-head col-12 pb-4">
+                <h4 class="mbr-section-title mbr-fonts-style align-left pt-2 mb-0 display-5">Property Details</h4>
+                
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="col-12 col-md-6">
+                <div class="card item-wrapper">
+                  <div class="item-img">
+                    <img src="<%= (url_for(@house.profile_image)) %>" alt="house_pic" width="300px">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 bg-secondary align-self-stretch d-flex justify-content-center align-items-center">
+                <div class="card item-wrapper" >
+                  <ul class="list-group list-group-flush" style="background-color: transparent; border: none;">
+                    <li class="list-group-item">House Type: <%= @house.desription%></li>
+                    <li class="list-group-item">Site location: <%= @house.location%></li>
+                    <% if @house.sold %>
+                      <p class="btn btn-success">Sold</p>
+                    <% else %>
+                      <% if @house.available_for == "buy" %>
+                        <li class="list-group-item">For <%= @house.available_for %>: <%= @house.buying_price %>Rs</li>
+                        <%= link_to 'Payment', "#{new_payment_path}?id=#{@house.id}", class: "btn btn-primary m-1 " %>
+                      <% else %>
+                        <li class="list-group-item">For <%= @house.available_for %>: <%= @house.rental_price %>Rs</li>
+                        <%= link_to 'Payment', "#{new_payment_path}?id=#{@house.id}", class: "btn btn-primary m-1 " %>
+                      <% end %>
+                    <% end %>   
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>

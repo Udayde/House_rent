@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   resources :houses
   resources :payments
-  match "*path", to: "errors#not_found", via: :all
+
+  # match "*path", to: "errors#not_found", via: :all
 end

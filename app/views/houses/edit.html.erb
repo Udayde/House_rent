@@ -1,43 +1,39 @@
-
-<%=render "share/logoutbutton"%>
-<%= form_with model:@house do |form| %>
-<div>
-<%=form.label :description %>
-<%=form.text_field :desription%>
-</div>
-<br>
-
-<div>
-<%=form.label :location %>
-<%=form.text_field :location%>
-</div>
-<br>
- 
-<div>
-<%=form.label :buying_price %>
-<%=form.number_field :buying_price%>
-</div><br>
-
-<div>
-<%=form.label :rental_price %>
-<%=form.number_field :rental_price%>
-</div><br>
-
+<%= form_with model: @house, class: 'col-4 m-auto p-2 p-3 bg-info bg-opacity-10 border border-info rounded-end mt-3' do |form| %>
+<legend>House Registration</legend>
+    <div>
+        <%=form.label :description %>   
+        <%=form.text_field :desription, class: 'form-control' %>
+    </div>
+    <br>
 
     <div>
-        <%=form.label :sold %>
-        <select name="house[sold]">
-           <option value=true>sold</option>
-           <option value=false>unsold</option>
+           <%=form.label :location %>
+        <%=form.text_field :location, class: 'form-control' %>
+    </div>
+    <br>
+    <div>
+        <%=form.label :available_for %>
+        <select name="house[available_for]">
+           <option value="buy" >buy</option>
+           <option value="rent">rent</option>
         </select>
     </div>
     
 
-<div>
-        <%=form.label :profile_image %>
-        <%=form.file_field :profile_image %>
+    <div>
+        <%=form.label :buying_price %>
+        <%=form.number_field :buying_price, class: 'form-control' %>
+    </div><br>
+    <div>
+        <%=form.label :rental_price %>
+        <%=form.number_field :rental_price, class: 'form-control' %>
     </div><br>
 
+    <div>
+        <%=form.label :profile_image %>
+        <%=form.file_field :profile_image, class: 'form-control'  %>
+    </div><br>
 
-<%= form.submit class: 'btn btn-primary'%>
+    
+    <%= form.submit class: 'btn btn-primary'%>
 <% end %>

@@ -4,8 +4,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage , :all
-    return
     can :read, House 
    
     return if user.user?

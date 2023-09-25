@@ -1,15 +1,20 @@
+<style>
+    .form-control{
+        background-color:grey;
+    }
+</style>
 
-
-<%= form_with model: @house do |form| %>
+<%= form_with model: @house, class: 'col-4 m-auto p-2 p-3 bg-info bg-opacity-10 border border-info rounded-end mt-3' do |form| %>
+<legend>House Registration</legend>
     <div>
         <%=form.label :description %>   
-        <%=form.text_field :desription %>
+        <%=form.text_field :desription, class: 'form-control' %>
     </div>
     <br>
 
     <div>
            <%=form.label :location %>
-        <%=form.text_field :location%>
+        <%=form.text_field :location, class: 'form-control' %>
     </div>
     <br>
     <div>
@@ -23,16 +28,16 @@
 
     <div>
         <%=form.label :buying_price %>
-        <%=form.number_field :buying_price%>
+        <%=form.number_field :buying_price, class: 'form-control' %>
     </div><br>
     <div>
         <%=form.label :rental_price %>
-        <%=form.number_field :rental_price%>
+        <%=form.number_field :rental_price, class: 'form-control' %>
     </div><br>
 
     <div>
         <%=form.label :profile_image %>
-        <%=form.file_field :profile_image %>
+        <%=form.file_field :profile_image, class: 'form-control'  %>
     </div><br>
 
     
