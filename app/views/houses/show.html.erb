@@ -60,7 +60,9 @@
               <div class="col-12 col-md-6">
                 <div class="card item-wrapper">
                   <div class="item-img">
+                  <%if @house.profile_image.present?%>
                     <img src="<%= (url_for(@house.profile_image)) %>" alt="house_pic" width="300px">
+                  <%end%>
                   </div>
                 </div>
               </div>

@@ -1,5 +1,12 @@
 <h1>House For Rent </h1>
+ <%= search_form_for @q,url:  :houses do |form| %>
+ <div class="form-group">
  
+  <%= form.label :desription %>
+  <%= form.text_field :desription_cont ,class: "form-control" %>
+  <%= form.submit %>
+  </div>
+ <%end%>
    <%= link_to 'Create', new_house_path,  class: "btn btn-primary m-1"%> 
 <% @house.each do|house| %>
 <div class="card mb-3" style="max-width: 540px;">

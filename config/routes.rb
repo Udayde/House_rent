@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get 'users/index'
+  devise_for :users, controllers: { registrations: 'users/registrations' }
  # devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -9,6 +10,10 @@ Rails.application.routes.draw do
 
   resources :houses
   resources :payments
+  namespace :users do 
+    resources :users
+  end
+ 
 
   # match "*path", to: "errors#not_found", via: :all
 end

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 before_action :authenticate_user!
+before_action :configure_permitted_parameters, if: :devise_controller?
 
 rescue_from CanCan::AccessDenied do |exception|
     # respond_to do |format|
@@ -32,4 +33,11 @@ def handle_record_not_found
   redirect_to root_path
 end
 
+protected
+
+  def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password)}
+
+      devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password)}
+  end
 end

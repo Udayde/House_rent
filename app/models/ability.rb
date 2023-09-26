@@ -8,7 +8,9 @@ class Ability
    
     return if user.user?
     can :update, House
-    # can :update , House
+    can :create , House
+    can :destroy, House
+    can :destroy, User
     return if user.moderator?
     # can :manage , :all
     # return if user.admin?

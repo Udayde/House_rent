@@ -1,0 +1,25 @@
+<table class="table">
+
+  <thead>
+    <tr>
+      <th scope="col">sr.no</th>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+      <th scope="col">role</th>
+      <th scope="col" > Action</th>
+    </tr>
+  </thead>
+  <tbody>
+ <% @users.each do|user| %>
+    <tr>
+      <th scope="row"><%=user.id%></th>
+      <td><%=user.name%></td>
+      <td><%=user.email %></td>
+      <td><%=user.role %></td>
+      <%= link_to 'edit',edit_user_path(student), class: "badge bg-info"%>
+      <%= link_to 'Delete', users_path, data:{turbo_method: :delete ,turbo_confirm:'Are you sure'}, class: "badge bg-danger"%></td>
+    </tr>
+<% end %>
+    </tr>
+  </tbody>
+</table>
