@@ -4,7 +4,7 @@ class HousesController < ApplicationController
     def index 
         @q = House.ransack(params[:q])
         @house = @q.result(distinct: true)
-        @house=House.all
+        # @house=House.all
     end
 
 

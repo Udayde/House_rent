@@ -7,7 +7,11 @@
   <%= form.submit %>
   </div>
  <%end%>
+
+ <% if can? :create , House%>
    <%= link_to 'Create', new_house_path,  class: "btn btn-primary m-1"%> 
+    <%= link_to 'view_users', users_users_path,  class: "btn btn-primary m-1"%> 
+    <%end%>
 <% @house.each do|house| %>
 <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
@@ -40,4 +44,4 @@
 </div>
 
 <% end %>
-  
+

@@ -3,16 +3,18 @@
 class Ability
   include CanCan::Ability
 
+ 
+
   def initialize(user)
-    can :read, House 
-   
+    debugger
+    can :read, House
     return if user.user?
-    can :update, House
-    can :create , House
-    can :destroy, House
-    can :destroy, User
+    alias_action :create, :update, :destroy, to: :actions
+    can :actions, House
+    can :destroy, User, role: 'user'
     return if user.moderator?
-    # can :manage , :all
-    # return if user.admin?
+
+    can :destroy , :User
+    return if user.admin?
   end
 end
