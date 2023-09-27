@@ -19,7 +19,7 @@ class Users::UsersController < ApplicationController
 
     def destroy
         @user=User.find(params[:id])
-        debugger
+      
         raise StandardError, "not authorized"  unless can? :destroy, @user
 
         if @user.destroy

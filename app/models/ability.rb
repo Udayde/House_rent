@@ -6,23 +6,25 @@ class Ability
  
 
   def initialize(user)
-    # if user.moderator?
-    #   can :destroy, User, role: 'user'
-    # end
 
-    can :read, House
-    if user.user?
+    if user.user? || user.admin? || user.moderator?
+      can :read, House
+    end
+    
+
+    if user.moderator?
       alias_action :create, :update, :destroy, to: :actions
       can :actions, House
       can :destroy, User, role: 'user'
     end
-   
-    if user.moderator?
+    
 
-    # can :destroy , :User
-    can :destroy ,User,role: "moderator"
+    if user.admin?
+      alias_action :create, :update, :destroy, to: :actions
+      can :actions, House
+      can :destroy ,User,role: "moderator"
+    end
    
-    return if user.admin?
-
   end
+  
 end

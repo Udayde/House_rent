@@ -2,8 +2,13 @@
  <%= search_form_for @q,url:  :houses do |form| %>
  <div class="form-group">
  
-  <%= form.label :desription %>
-  <%= form.text_field :desription_cont ,class: "form-control" %>
+  <%
+=begin%>
+ <%= form.label :serch %>
+  <%= form.search_field :serch, class: "form-control" %> 
+<%
+=end%>
+  
   <%= form.submit %>
   </div>
  <%end%>

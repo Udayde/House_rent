@@ -1,36 +1,4 @@
-<%
-=begin%>
- <div class="card border-success mb-3" style="width: 18rem;">
 
-  <div class="card-header">  Details</div>
-  
-  
-
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">House Type: <%= @house.desription%></li>
-    <li class="list-group-item">Site location: <%= @house.location%></li>
-    <% if @house.sold%>
-      <p class ="btn btn-success">Sold</p>
-    <%else%>
-      <%if @house.available_for=="buy"%>
-        <li class="list-group-item">For <%= @house.available_for%>: <%= @house.buying_price%>Rs</li>
-        <%= link_to 'Payment', "#{new_payment_path}?id=#{@house.id}",  class: "btn btn-primary m-1"%>
-      <%else%>
-        <li class="list-group-item">For <%= @house.available_for%>: <%= @house.rental_price%>Rs</li>
-        <%= link_to 'Payment', "#{new_payment_path}?id=#{@house.id}",  class: "btn btn-primary m-1"%>
-      <%end%>
-    <%end%>   
-  </ul>
-
-    <div class='d-flex'>
-        <%= link_to 'Back',houses_path, class: 'me-3' %>
-       <% if can? :update , @house%>
-        <%= link_to 'edit',edit_house_path(@house) %>
-       <%end%>
-    </div>
-</div> 
-<%
-=end%>
 
 <style>
   .h-half{
@@ -83,10 +51,36 @@
                         <%= link_to 'Payment', "#{new_payment_path}?id=#{@house.id}", class: "btn btn-primary m-1 " %>
                       <% end %>
                     <% end %>   
+                    
                   </ul>
                 </div>
               </div>
             </div>
         </div>
     </div>
+
+    <!-- Add this code inside the card containing property details -->
+<div class="row mt-5 p-2">
+  <div class="border border-dark card-footer d-flex flex-column justify-content-center align-items-center col-5 shadow-lg p-3 mb-5  rounded">
+    <h5 class="mbr-section-title mbr-fonts-style align-center pt-2 mb-3 ">Feedback Form</h5>
+    <% @feed = Feed.new %>
+    <%= form_with model: @feed do |form| %>
+      <div class="mb-3">
+        <p class="text-start mb-0">  <label  class="form-label">Feedback Message</label></p>
+        <%= form.text_area :feedback, class: 'form-control', required: true %>
+      </div>
+      <%= form.submit :Submit, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <div class="col-6 border border-dark ms-auto">
+    <% @feedbacks.each do |feed| %>
+      <p class= 'mb-0 text-start p-2'><strong class='me-3'><%= feed.name %>: </strong> <%= feed.feedback %></p>
+    <% end %>
+  </div>
+
+
+
+</div> 
+
 </section>

@@ -45,8 +45,20 @@ class HousesController < ApplicationController
 				redirect_to houses_path
     end
 
-    def show 
-        @house=House.find(params[:id])
+    def show
+        @house=House.find_by(params[:id])
+        @feedbacks = @house.feeds
+
+        
+
+        unless params[:commit].nil?
+            @feed = @house.feeds.new(feed_params)
+            if @feed.save
+                redirect_back(fallback_location: root_path)
+            else
+                render :show, notice: 'incomplete feedback!'
+            end
+        end
     end
   
 
@@ -58,6 +70,13 @@ class HousesController < ApplicationController
                     res[:user_id] = current_user.id
                     res
     end
+
+    def feed_params
+		@obj = params.require(:feed).permit(:feedback)
+        @obj[:user_id] = current_user.id
+        @obj[:name] = current_user.name
+        @obj
+	end
 
 end
 
