@@ -1,5 +1,5 @@
 class Users::UsersController < ApplicationController
-  
+    # authorize_resource//doubt
 
     def index 
         @users=User.all
@@ -17,8 +17,11 @@ class Users::UsersController < ApplicationController
         end
     end
 
-    def destroy 
+    def destroy
         @user=User.find(params[:id])
+        debugger
+        raise StandardError, "not authorized"  unless can? :destroy, @user
+
         if @user.destroy
 				flash[:notice] = 'deleted sucessfully'
 				redirect_to users_users_path

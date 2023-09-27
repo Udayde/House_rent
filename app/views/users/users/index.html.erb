@@ -18,7 +18,17 @@
       <td><%=user.role %></td>
       <td>
       <%= link_to 'edit',edit_users_user_path(user), class: "badge bg-info"%>
+      <%
+=begin%>
+ <% if user.role != 'moderator' %> 
+<%
+=end%>
       <%= link_to 'Delete', users_user_path(user), data:{turbo_method: :delete ,turbo_confirm:'Are you sure'}, class: "badge bg-danger"%></td>
+      <%
+=begin%>
+ <% end %> 
+<%
+=end%>
     </tr>
 <% end %>
     </tr>
