@@ -7,8 +7,4 @@ class User < ApplicationRecord
   has_many :feeds, dependent: :destroy
 
   enum :role, {user:0,moderator:1,admin:2}
-
-  def self.ransackable_attributes(auth_object = nil)
-    ["name"]
-  end
 end

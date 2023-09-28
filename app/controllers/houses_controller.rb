@@ -58,7 +58,7 @@ class HousesController < ApplicationController
         #debugger
         @res = params.require(:house).permit(:desription ,:location, :buying_price ,:rental_price,:available_for,:sold)
 				@res[:user_id] = current_user.id
-				@res[:name] = current_user.name
+				# @res[:name] = current_user.name
 				@res
     end
 
