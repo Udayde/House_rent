@@ -63,20 +63,24 @@
 <div class="row mt-5 p-2">
   <div class="border border-dark card-footer d-flex flex-column justify-content-center align-items-center col-5 shadow-lg p-3 mb-5  rounded">
     <h5 class="mbr-section-title mbr-fonts-style align-center pt-2 mb-3 ">Feedback Form</h5>
-    <% @feed = Feed.new %>
     <%= form_with model: @feed do |form| %>
       <div class="mb-3">
         <p class="text-start mb-0">  <label  class="form-label">Feedback Message</label></p>
         <%= form.text_area :feedback, class: 'form-control', required: true %>
+        <%=form.hidden_field :house_id, value: @house.id%>
       </div>
       <%= form.submit :Submit, class: 'btn btn-primary' %>
     <% end %>
   </div>
 
-  <div class="col-6 border border-dark ms-auto">
+  <div class="col-6 border border-white ms-auto bg-dark text-white">
     <% @feedbacks.each do |feed| %>
+    <div class="d-flex justify-content-between align-items-center">
       <p class= 'mb-0 text-start p-2'><strong class='me-3'><%= feed.name %>: </strong> <%= feed.feedback %></p>
+      <%= link_to "delete", feed_path(feed), data:{turbo_method: :delete ,turbo_confirm:'Are you sure'}, class: "badge bg-danger"%>
+    </div>
     <% end %>
+   
   </div>
 
 

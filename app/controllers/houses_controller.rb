@@ -46,19 +46,9 @@ class HousesController < ApplicationController
     end
 
     def show
-        @house=House.find_by(params[:id])
+        @house=House.find(params[:id])
         @feedbacks = @house.feeds
-
-        
-
-        unless params[:commit].nil?
-            @feed = @house.feeds.new(feed_params)
-            if @feed.save
-                redirect_back(fallback_location: root_path)
-            else
-                render :show, notice: 'incomplete feedback!'
-            end
-        end
+        @feed = Feed.new
     end
   
 
@@ -66,17 +56,11 @@ class HousesController < ApplicationController
 
     def house_param
         #debugger
-        res = params.require(:house).permit(:desription ,:location, :buying_price ,:rental_price,:available_for,:sold)
-                    res[:user_id] = current_user.id
-                    res
+        @res = params.require(:house).permit(:desription ,:location, :buying_price ,:rental_price,:available_for,:sold)
+				@res[:user_id] = current_user.id
+				@res[:name] = current_user.name
+				@res
     end
-
-    def feed_params
-		@obj = params.require(:feed).permit(:feedback)
-        @obj[:user_id] = current_user.id
-        @obj[:name] = current_user.name
-        @obj
-	end
 
 end
 

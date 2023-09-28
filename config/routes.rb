@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :users do 
     resources :users
   end
-  resources :feeds
+  resources :feeds, only: [:create,:destroy]
  
 
   # match "*path", to: "errors#not_found", via: :all

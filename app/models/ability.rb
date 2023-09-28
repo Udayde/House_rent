@@ -16,6 +16,7 @@ class Ability
       alias_action :create, :update, :destroy, to: :actions
       can :actions, House
       can :destroy, User, role: 'user'
+      can :destroy,Feed
     end
     
 

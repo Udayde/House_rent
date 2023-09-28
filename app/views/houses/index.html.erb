@@ -1,15 +1,16 @@
 <h1>House For Rent </h1>
  <%= search_form_for @q,url:  :houses do |form| %>
- <div class="form-group">
+ <div class="form-group d-flex justify-content-center ">
  
   <%
 =begin%>
- <%= form.label :serch %>
-  <%= form.search_field :serch, class: "form-control" %> 
+ <%= form.label :serch %> 
 <%
 =end%>
   
-  <%= form.submit %>
+  <%= form.search_field :desription_cont, class: "form-control " , style: "width: 200px;"%>
+  
+  <%= form.submit class: "btn btn-dark mx-2"  %>
   </div>
  <%end%>
 
@@ -28,8 +29,8 @@
        </div>
           <div class="col-md-8">
              <div class="card-body">                                                            
-              <p><strong> Description:</strong><%= house.desription%></p>
-              <p><strong>Location:</strong><%= house.location%></p>
+              <p><strong> Description: </strong><%= house.desription%></p>
+              <p><strong>Location: </strong><%= house.location%></p>
               <div class="d-inline-flex ">
               
                 <a href=<%=house_path (house)%> class="btn btn-primary m-1">view</a>

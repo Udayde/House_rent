@@ -9,14 +9,15 @@ class FeedsController < ApplicationController
 		@feedback = Feed.new
 	end
 
-	# def create
-	# 	@feedback = Feed.new(feed_params)
-	# 	if @feedback.save
-	# 		redirect_back(fallback_location: root_path)
-	# 	else
-	# 		render :new, notice: 'invalid feedback!'
-	# 	end
-	# end
+	def create
+		# debugger
+		@feedback = Feed.new(feed_params)
+		
+		if @feedback.save
+			redirect_back(fallback_location: root_path)
+		
+		end
+	end
 
 	def show
 	end
@@ -27,16 +28,17 @@ class FeedsController < ApplicationController
 	def update
 		if @feedback.update(feed_params)
 			redirect_back(fallback_location: root_path)
-		else
-			render :edit, notice: 'invalid feedback.'
+	
 		end
 	end
 
 	def destroy
+		raise StandardError, "not authorized"  unless can? :destroy, @feedback
 		if @feedback.nil?
 			redirect_to root_path
 		else
 			@feedback.destroy
+			redirect_back(fallback_location: root_path) 
 		end
 	end
 
@@ -48,6 +50,9 @@ class FeedsController < ApplicationController
 	end
 
 	def feed_params
-		params.require(:feed).permit(:name, :feedback)
+		@obj = params.require(:feed).permit(:feedback, :house_id)
+        @obj[:user_id] = current_user.id
+        @obj[:name] = current_user.name
+		@obj
 	end
 end

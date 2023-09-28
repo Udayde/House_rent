@@ -7,9 +7,13 @@ class House < ApplicationRecord
 
     def self.ransackable_attributes(auth_object = nil)
         ["available_for", "buying_price", "created_at", "desription", "id", "location", "rental_price", "sold", "updated_at", "user_id"]
-      end
+    end
 
       # def bar_search
       #   self.serch = [desription, location].reject(&:blank?).join(" ")
       # end
+
+      def self.ransackable_associations(auth_object=nil)
+        ["user"]
+      end
 end
