@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'users/index'
   devise_for :users, controllers: { registrations: 'users/registrations' }
- # devise_for :users
+  # devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -10,11 +10,10 @@ Rails.application.routes.draw do
 
   resources :houses
   resources :payments
-  namespace :users do 
+  namespace :users do
     resources :users
   end
-  resources :feeds, only: [:create,:destroy]
- 
+  resources :feeds, only: %i[create destroy]
 
   # match "*path", to: "errors#not_found", via: :all
 end

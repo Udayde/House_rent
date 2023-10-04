@@ -1,12 +1,6 @@
 <h1>House For Rent </h1>
  <%= search_form_for @q,url:  :houses do |form| %>
  <div class="form-group d-flex justify-content-center ">
- 
-  <%
-=begin%>
- <%= form.label :serch %> 
-<%
-=end%>
   
   <%= form.search_field :desription_or_location_cont, class: "form-control " , style: "width: 200px;"%>
   
@@ -50,4 +44,4 @@
 </div>
 
 <% end %>
-
+<%= paginate @house %>

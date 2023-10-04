@@ -6,5 +6,5 @@ class User < ApplicationRecord
   has_many :houses, dependent: :destroy
   has_many :feeds, dependent: :destroy
 
-  enum :role, {user:0,moderator:1,admin:2}
+  enum :role, { user: 0, moderator: 1, admin: 2 }
 end

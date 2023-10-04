@@ -4,44 +4,43 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params
   # before_action :configure_account_update_params, only: [:update]
 
-#   def index 
-#     @user=User.all
-#   end
+  #   def index
+  #     @user=User.all
+  #   end
 
-#   def new
-#     @user=User.new
-# end
+  #   def new
+  #     @user=User.new
+  # end
 
-#  def create
-#      debugger
-#      @user=User.new(user_param)
-#       @user.save         
-#  end
+  #  def create
+  #      debugger
+  #      @user=User.new(user_param)
+  #       @user.save
+  #  end
 
-# def edit 
-#     @user=User.find(params[:id])
-# end
+  # def edit
+  #     @user=User.find(params[:id])
+  # end
 
-# def update
-#     @user=User.find(params[:id])
-#     @user.update(user_param)
-# end
+  # def update
+  #     @user=User.find(params[:id])
+  #     @user.update(user_param)
+  # end
 
-# def destroy 
-#     @user=User.find(params[:id])
-#     @user.destroy
-# end
+  # def destroy
+  #     @user=User.find(params[:id])
+  #     @user.destroy
+  # end
 
-# def show 
-#     @user=House.find(params[:id])
-# end
+  # def show
+  #     @user=House.find(params[:id])
+  # end
 
-#  private
+  #  private
 
-#      def  user_param 
-#           params.required(:user).permit(:email ,:encrypted_password, :role ,:name)
-#      end
-
+  #      def  user_param
+  #           params.required(:user).permit(:email ,:encrypted_password, :role ,:name)
+  #      end
 
   # GET /resource/sign_up
   # def new
@@ -50,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
-    
+
   # end
 
   # GET /resource/edit
@@ -76,8 +75,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
-
-  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

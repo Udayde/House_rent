@@ -1,5 +1,5 @@
 class UserDecorator < BaseDecorator
   def name_with_role
-		"#{name} #{role}"
-	end
+    "#{name} #{role}"
+  end
 end
