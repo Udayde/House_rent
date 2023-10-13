@@ -24,3 +24,15 @@
    width :400px;
  }
    
+ .h-half{
+  height:50vh;
+}
+
+.prop-img{
+  height : 400px;
+}
+.item-wrapper {
+  background-color: transparent !important;
+  border: none !important;
+}
+

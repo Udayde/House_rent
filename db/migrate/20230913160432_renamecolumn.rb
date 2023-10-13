@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Renamecolumn < ActiveRecord::Migration[7.0]
   def change
     rename_column :houses, :type, :desription

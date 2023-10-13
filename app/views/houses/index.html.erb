@@ -1,47 +1,53 @@
-<h1>House For Rent </h1>
+<style>
+  .width-100{
+    width:550px;
+  }
+</style>
+
  <%= search_form_for @q,url:  :houses do |form| %>
- <div class="form-group d-flex justify-content-center ">
+ <div class="form-group  d-flex justify-content-center my-2 ">
   
-  <%= form.search_field :desription_or_location_cont, class: "form-control " , style: "width: 200px;"%>
+  <%= form.search_field :desription_or_location_cont, class: "form-control  " , style: "width: 200px; margin-left: 100px"%>
   
   <%= form.submit class: "btn btn-dark mx-2"  %>
   </div>
  <%end%>
 
- <% if can? :create , House%>
-   <%= link_to 'Create', new_house_path,  class: "btn btn-primary m-1"%> 
-    <%= link_to 'view_users', users_users_path,  class: "btn btn-primary m-1"%> 
-    <%end%>
-<% @house.each do|house| %>
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
- 
-      <div class="col-md-4">
-      <% if house.profile_image.attached? %>
-       <img src="<%= (url_for(house.profile_image)) %>" class="img-fluid rounded-start" alt="image_house">
-      <% end %>
-       </div>
-          <div class="col-md-8">
-             <div class="card-body">                                                            
+<% if can? :create , House%>
+  <%= link_to 'Create', new_house_path,  class: "btn btn-primary m-2"%> 
+  <%= link_to 'view_users', users_users_path,  class: "btn btn-primary m-2"%> 
+<%end%>
+
+<div class="d-flex flex-column align-items-center">
+  <% @house.each do |house| %>
+    <div class="card mb-3 d-flex justify-content-center border border-dark" style="max-width: 540px;">
+      <div class="row width-100 shadow p-2">
+        <div class="col-4">
+          <% if house.profile_image.attached? %>
+            <img src="<%= (url_for(house.profile_image)) %>" class="img-fluid rounded-circle" alt="image_house">
+          <% end %>
+        </div>
+        <div class="col-8">
+          <div class="">                                                          
               <p><strong> Description: </strong><%= house.desription%></p>
               <p><strong>Location: </strong><%= house.location%></p>
-              <div class="d-inline-flex ">
-              
+              <div class="d-inline-flex ">               
                 <a href=<%=house_path (house)%> class="btn btn-primary m-1">view</a>
-                  <% if can? :update , House%>
-                    <a href=<%=edit_house_path (house)%> class="btn btn-primary m-1">edit</a>
-                    <%= link_to 'Delete', house_path(house), data: {turbo_method: :delete}, class: 'btn btn-danger m-1' %>
-                  <%end%>
+                <% if can? :update , House%>
+                  <a href=<%=edit_house_path (house)%> class="btn btn-primary m-1">edit</a>
+                  <%= link_to 'Delete', house_path(house), data: {turbo_method: :delete}, class: 'btn btn-danger m-1' %>
+                <%end%>
               </div>
-    
-                 <p class="card-text"><small class="text-muted">last updated at <%= time_ago_in_words(house.updated_at) %> ago</small></small></p>
-           </div>
+              <p class="card-text"><small class="text-muted">last updated at <%= time_ago_in_words(house.updated_at) %> ago</small></small></p>
+          </div>
+        </div>
+      </div>
     </div>
-      
-  </div>
- 
-</div>
+  <% end %>
 </div>
 
-<% end %>
-<%= paginate @house %>
+
+
+<div class='d-flex justify-content-center'>
+  <%= paginate @house %>
+</div>

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# house model
 class House < ApplicationRecord
   enum :available_for, { buy: 0, rent: 1 }
   belongs_to :user
@@ -9,10 +12,6 @@ class House < ApplicationRecord
     %w[available_for buying_price created_at desription id location rental_price sold
        updated_at user_id]
   end
-
-  # def bar_search
-  #   self.serch = [desription, location].reject(&:blank?).join(" ")
-  # end
 
   def self.ransackable_associations(_auth_object = nil)
     ['user']

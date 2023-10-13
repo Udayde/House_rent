@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
+# HousesController.
 class HousesController < ApplicationController
   authorize_resource
+  before_action :set_house_service
+  before_action :set_house, only: %i[edit update show destroy]
 
   def index
     @q = House.ransack(params[:q])
-    @house = @q.result(distinct: true).page(params[:page])
-    # @house=House.all
+    @house = @service.service_index(@q, params)
   end
 
   def new
@@ -12,8 +16,7 @@ class HousesController < ApplicationController
   end
 
   def create
-    @house = House.new(house_param)
-    @house.profile_image.attach(params[:house][:profile_image])
+    @house = @service.service_create
     if @house.save
       flash[:notice] = 'success registeration!'
       redirect_to houses_path
@@ -22,13 +25,10 @@ class HousesController < ApplicationController
     end
   end
 
-  def edit
-    @house = House.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @house = House.find(params[:id])
-    @house.profile_image.attach(params[:house][:profile_image]) if params[:house][:profile_image].present?
+    @service.ser(params)
     return unless @house.update(house_param)
 
     flash[:notice] = 'success update!'
@@ -36,24 +36,29 @@ class HousesController < ApplicationController
   end
 
   def destroy
-    House.find(params[:id]).destroy
+    @house.destroy
     flash[:notice] = 'deleted sucessfully'
     redirect_to houses_path
   end
 
   def show
-    @house = House.find(params[:id])
-    @feedbacks = @house.feeds
     @feed = Feed.new
+    @feedbacks = @house.feeds
   end
 
   private
 
+  def set_house_service
+    @service = EditHouseService.new(@house, params, current_user)
+  end
+
   def house_param
-    # debugger
     @res = params.require(:house).permit(:desription, :location, :buying_price, :rental_price, :available_for, :sold)
     @res[:user_id] = current_user.id
-    # @res[:name] = current_user.name
     @res
+  end
+
+  def set_house
+    @house = House.find(params[:id])
   end
 end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# feed controller
 class FeedsController < ApplicationController
   before_action :set_feedback, only: %i[show edit update destroy]
 
@@ -10,9 +13,7 @@ class FeedsController < ApplicationController
   end
 
   def create
-    # debugger
     @feedback = Feed.new(feed_params)
-
     return unless @feedback.save
 
     redirect_back(fallback_location: root_path)

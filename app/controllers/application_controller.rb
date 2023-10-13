@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -22,14 +24,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
-
-  def handle_record_not_found
-    # Optionally, you can set a flash message to provide user feedback
-    flash[:alert] = 'House not found. Please check the provided ID.'
-
-    # Redirect to a specific page, e.g., the home page or an error page
-    redirect_to root_path
-  end
 
   protected
 

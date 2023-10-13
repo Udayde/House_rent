@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'users/index'
   devise_for :users, controllers: { registrations: 'users/registrations' }
@@ -14,6 +16,4 @@ Rails.application.routes.draw do
     resources :users
   end
   resources :feeds, only: %i[create destroy]
-
-  # match "*path", to: "errors#not_found", via: :all
 end
