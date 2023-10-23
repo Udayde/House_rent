@@ -12,7 +12,8 @@ class EditHouseService
   end
 
   def service_index(q, params)
-    @house = q.result(distinct: true).page(params[:page])
+    @houses = q.result(distinct: true).page(params[:page])
+    @houses
   end
 
   def service_create

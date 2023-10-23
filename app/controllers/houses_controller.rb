@@ -8,7 +8,7 @@ class HousesController < ApplicationController
 
   def index
     @q = House.ransack(params[:q])
-    @house = @service.service_index(@q, params)
+    @houses = @service.service_index(@q, params)
   end
 
   def new

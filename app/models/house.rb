@@ -8,6 +8,7 @@ class House < ApplicationRecord
   has_many :feeds, dependent: :destroy
   # before_save :bar_search
   paginates_per 3
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[available_for buying_price created_at desription id location rental_price sold
        updated_at user_id]

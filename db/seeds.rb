@@ -10,6 +10,6 @@
 
 User.destroy_all
 
-User.create(name: 'sharu', role: 'moderator', email: 'moderator@gmail.com', password: '123456')
+User.create(name: 'alex', role: 'moderator', email: 'moderator@gmail.com', password: '123456')
 User.create(name: 'jhon', role: 'admin', email: 'admin@gmail.com', password: '123456')
-User.create(name: 'patan', role: 'user', email: 'patan@gmail.com', password: '123456')
+User.create(name: 'user', role: 'user', email: 'user@gmail.com', password: '123456')
