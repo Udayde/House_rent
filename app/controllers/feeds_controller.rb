@@ -30,14 +30,20 @@ class FeedsController < ApplicationController
   end
 
   def destroy
+    begin
     raise StandardError, 'not authorized' unless can? :destroy, @feedback
+      if @feedback.nil?
+        redirect_to root_path
+      else
+        @feedback.destroy
+        redirect_back(fallback_location: root_path)
+      end
 
-    if @feedback.nil?
-      redirect_to root_path
-    else
-      @feedback.destroy
+    rescue StandardError=> e
+      flash[:notice] = "unauthorised"
       redirect_back(fallback_location: root_path)
     end
+    
   end
 
   private

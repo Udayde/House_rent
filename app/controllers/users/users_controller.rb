@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# class Users::UsersController.
 module Users
-  # class Users::UsersController.
   class UsersController < ApplicationController
     def index
       @users = User.all
@@ -21,19 +19,15 @@ module Users
 
     def destroy
       @user = User.find(params[:id])
-      begin
-        raise StandardError, 'not authorized' unless can? :destroy, @user
-
-        if @user.destroy
-          flash[:notice] = 'Deleted successfully'
-        else
-          flash[:error] = 'Failed to delete user'
-        end
-        redirect_to users_users_path
-      rescue StandardError => e
-        flash[:notice] = "An error occurred: #{e.message}"
-        redirect_to users_users_path
+      if can?(:destroy, @user) && @user.destroy
+        flash[:notice] = 'Delete successful'
+      else
+        flash[:error] = 'Failed to delete user'
       end
+    rescue StandardError => e
+      flash[:notice] = "An error occurred: #{e.message}"
+    ensure
+      redirect_to users_users_path
     end
 
     private
@@ -43,5 +37,6 @@ module Users
       res[:id] = params[:id]
       res
     end
+    
   end
 end

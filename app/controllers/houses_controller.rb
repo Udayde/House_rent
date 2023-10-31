@@ -3,8 +3,9 @@
 # HousesController.
 class HousesController < ApplicationController
   authorize_resource
-  before_action :set_house_service
   before_action :set_house, only: %i[edit update show destroy]
+  before_action :set_house_service
+ 
 
   def index
     @q = House.ransack(params[:q])
@@ -29,7 +30,7 @@ class HousesController < ApplicationController
 
   def update
     @service.ser(params)
-    return unless @house.update(house_param)
+    return unless @house.update(house_param) 
 
     flash[:notice] = 'success update!'
     redirect_to houses_path
@@ -49,11 +50,11 @@ class HousesController < ApplicationController
   private
 
   def set_house_service
-    @service = EditHouseService.new(@house, params, current_user)
+    @service = HouseService.new(@house, params, current_user)
   end
 
   def house_param
-    @res = params.require(:house).permit(:desription, :location, :buying_price, :rental_price, :available_for, :sold)
+    @res = params.require(:house).permit(:desription, :location, :buying_price, :rental_price, :profile_image, :available_for, :sold)
     @res[:user_id] = current_user.id
     @res
   end

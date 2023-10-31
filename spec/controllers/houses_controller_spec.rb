@@ -89,7 +89,6 @@ RSpec.describe HousesController, type: :controller do
     it 'render :delete' do
       delete :destroy, params: { id: house.id }
 
-      # expect(response).to render_template('houses/delete')
       expect(response).to redirect_to(houses_path)
     end
   end
