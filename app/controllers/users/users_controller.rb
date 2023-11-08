@@ -13,6 +13,7 @@ module Users
     def update
       @service_user = UserService.new(params, User.find(params[:id]))
       @service_user.update_user
+
       flash[:notice] = 'success update!'
       redirect_to users_users_path
     end
@@ -20,6 +21,7 @@ module Users
     def destroy
       @user = User.find(params[:id])
       if can?(:destroy, @user) && @user.destroy
+        
         flash[:notice] = 'Delete successful'
       else
         flash[:error] = 'Failed to delete user'

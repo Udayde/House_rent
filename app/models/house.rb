@@ -6,6 +6,8 @@ class House < ApplicationRecord
   belongs_to :user
   has_one_attached :profile_image
   has_many :feeds, dependent: :destroy
+  # validates :location, presence: true
+  validates :location, presence: true
   # before_save :bar_search
   paginates_per 3
 

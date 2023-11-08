@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+  
   get 'users/index'
   devise_for :users, controllers: { registrations: 'users/registrations' }
   # devise_for :users

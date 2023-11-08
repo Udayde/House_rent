@@ -3,18 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe Users::UsersController, type: :controller do
+  let(:user) { create :user}
+  before do
+    sign_in user
+  end
   describe 'Get Index' do
-    let(:user) { create :user }
-    it 'asssign_in(user)ign @users' do
+   
+    it 'asssign user in @users' do
       get :index
-      expect(assigns(:users)) == ([user])
+      expect(assigns(:users)).to eq([user])
     end
   end
 
   describe '#edit ' do
-    let(:user) { create :user }
     it 'render :edit' do
-      sign_in user
       get :edit, params: {
         id: user.id
       }

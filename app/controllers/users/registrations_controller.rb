@@ -13,11 +13,14 @@ module Users
     #     @user=User.new
     # end
 
-    #  def create
-    #      debugger
-    #      @user=User.new(user_param)
-    #       @user.save
-    #  end
+     def create
+        @user=User.new(user_param)
+        if @user.save
+          sign_in @user
+          MyFirstJob.perform_async(@user.id)
+          redirect_to root_path
+        end
+      end
 
     # def edit
     #     @user=User.find(params[:id])
@@ -37,11 +40,11 @@ module Users
     #     @user=House.find(params[:id])
     # end
 
-    #  private
+     private
 
-    #      def  user_param
-    #           params.required(:user).permit(:email ,:encrypted_password, :role ,:name)
-    #      end
+         def  user_param
+              params.required(:user).permit(:email ,:password,:password_confirmation ,:name)
+         end
 
     # GET /resource/sign_up
     # def new
