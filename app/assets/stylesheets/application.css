@@ -39,3 +39,8 @@
 .width-100{
   width:550px;
 }
+
+.feedbacks-container{
+  height: 300px;
+  overflow-y: auto;
+}

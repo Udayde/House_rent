@@ -9,7 +9,7 @@ class House < ApplicationRecord
   # validates :location, presence: true
   validates :location, presence: true
   # before_save :bar_search
-  paginates_per 3
+  paginates_per 3      
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[available_for buying_price created_at desription id location rental_price sold
@@ -19,4 +19,15 @@ class House < ApplicationRecord
   def self.ransackable_associations(_auth_object = nil)
     ['user']
   end
+
+  # def bark 
+  #   "woof"
+  # end
+
+  # def hungry?(hungry_level)
+  #   hungry_level>5
+  # end
+  
 end
+
+

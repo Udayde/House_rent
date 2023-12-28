@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe House, type: :model do
   describe 'while creating house' do
     let(:house) { create :house }
+    let(:user) { create :user }
+    subject{described_class.new}
 
     it 'should be valid house with all attributes' do
       expect(house).to be_valid
@@ -57,5 +59,7 @@ RSpec.describe House, type: :model do
     it 'paginates with 3 items per page' do
       expect(House.default_per_page).to eq(3)
     end
+
   end
+
 end

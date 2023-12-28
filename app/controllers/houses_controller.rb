@@ -6,7 +6,6 @@ class HousesController < ApplicationController
   before_action :set_house, only: %i[edit update show destroy]
   before_action :set_house_service
  
-
   def index
     @q = House.ransack(params[:q])
     @houses = @service.service_index(@q, params)
@@ -31,7 +30,6 @@ class HousesController < ApplicationController
   def update
     @service.ser(params)
     return unless @house.update(house_param) 
-
     flash[:notice] = 'success update!'
     redirect_to houses_path
   end

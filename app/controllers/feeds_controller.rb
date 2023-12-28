@@ -2,7 +2,7 @@
 
 # feed controller
 class FeedsController < ApplicationController
-  before_action :set_feedback, only: %i[show edit update destroy]
+  before_action :set_feedback, only: %i[show edit update destroy]                                                                                                          
 
   def index
     @feedbacks = Feed.all
@@ -16,7 +16,7 @@ class FeedsController < ApplicationController
     @feedback = Feed.new(feed_params)
     return unless @feedback.save
 
-    redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path)
   end
 
   def show; end

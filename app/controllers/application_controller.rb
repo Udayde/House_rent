@@ -13,12 +13,18 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def handle_no_method_error(exception)
-    Rails.logger.error("NoMethodError: #{exception.message}")
-    redirect_to root_path
-  end
+  # def handle_record_not_found(exception)
+  #   Rails.logger.error("NoMethodError: #{exception.message}")
+  #   flash[:alert] = "No Record found"
+  #   redirect_to root_path
+  # end
+
+  # def handle_no_method_error(exception)
+  #   Rails.logger.error("NoMethodError: #{exception.message}")
+  #   redirect_to root_path
+  # end
   
-  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+  # rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   protected
 

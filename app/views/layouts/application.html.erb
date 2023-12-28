@@ -26,7 +26,12 @@
   <p class="alert alert-success"><%= flash[:notice] %></p>
 <% end %>
 <% if alert %>
-  <p class="alert alert-success"><%= alert %></p>
+ <div class="d-flex justify-content-center">
+    <div style="width:400px" class="alert alert-warning text-center"> 
+  <p class=""><%= alert %></p>
+  </div>
+ </div>
+  
 <% end %>
 
     <%= yield %>

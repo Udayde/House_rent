@@ -3,18 +3,17 @@
 # spec/services/payment_service_spec.rb
 require 'rails_helper'
 
-RSpec.describe PaymentService, type: :service do
+RSpec.describe PaymentService do
   let(:params) { { stripeEmail: 'test@example.com', stripeToken: 'valid_token' } }
-  let(:amount) { 1000 } # Amount in cents
-  let(:house) { create(:house) } # Use FactoryBot or create a house as needed
-
+  let(:amount) { 1000 } 
+  let(:house) { create(:house) } 
   describe '#service_charge' do
     it 'creates a customer and a charge using Stripe' do
-      # Stub the Stripe::Customer.create method
-      allow(Stripe::Customer).to receive(:create).and_return(double(id: 'customer_id'))
+     
+      # allow(Stripe::Customer).to receive(:create).and_return(double(id: 'customer_id'))
 
-      # Stub the Stripe::Charge.create method
-      allow(Stripe::Charge).to receive(:create).and_return(double(id: 'charge_id'))
+      
+      # allow(Stripe::Charge).to receive(:create).and_return(double(id: 'charge_id'))
 
       service = PaymentService.new(params, amount, house)
 

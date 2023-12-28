@@ -4,11 +4,11 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     # before_action :configure_sign_up_params
     # before_action :configure_account_update_params, only: [:update]
-
+    
     #   def index
     #     @user=User.all
     #   end
-
+        
     #   def new
     #     @user=User.new
     # end

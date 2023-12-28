@@ -14,7 +14,6 @@ class Ability
 
   def setup_common_permissions(user)
     return unless user.user? || user.admin? || user.moderator?
-
     can :read, House
     can :destroy, Feed, user_id: user.id
   end

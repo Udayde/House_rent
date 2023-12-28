@@ -85,3 +85,5 @@ gem 'stripe'
 gem 'sidekiq'
 gem "faker", "~> 3.2"
 gem "rails-erd"
+gem 'hotwire-rails'
+

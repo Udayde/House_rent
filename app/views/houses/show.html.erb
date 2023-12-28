@@ -1,9 +1,5 @@
 
-<%
-=begin%>
- transfer to application.css 
-<%
-=end%>
+
 
 <section data-bs-version="5" class="features7 cid-sHbZFN6Ckx" id="features07-4">
     
@@ -11,8 +7,8 @@
     <div class="container">
 
         <div class="row row-bg mt-4">
-            <div class="mbr-section-head col-12 pb-4">
-                <h4 class="mbr-section-title mbr-fonts-style align-left pt-2 mb-0 display-5">Property Details</h4>
+            <div class="mbr-section-head col-12 pb-4" data-controller="hello">
+                <h4 class="mbr-section-title mbr-fonts-style align-left pt-2 mb-0 display-5" data-action="click->hello#">Property Details</h4>
                 
             </div>
             <div class="d-flex justify-content-center  align-items-center">
@@ -50,21 +46,32 @@
         </div>
     </div>
 
-    <!-- Add this code inside the card containing property details -->
 <div class="row mt-5 p-2">
-  <div class="border border-dark card-footer d-flex flex-column  rounded-pill justify-content-center align-items-center col-5 shadow-lg p-3 mb-5  rounded">
-    <h5 class="mbr-section-title mbr-fonts-style align-center pt-2 mb-3 ">Feedback Form</h5>
-    <%= form_with model: @feed do |form| %>
-      <div class="mb-3">
+  <div class="border border-dark card-footer d-flex flex-column  rounded-pill justify-content-center align-items-center col-5 shadow-lg p-3 mb-5  rounded bg-dark">
+    <h5 class="mbr-section-title mbr-fonts-style align-center pt-2 mb-3 bg-primary">Feedback Form</h5>
+    <%
+=begin%>
+ <%= form_with model: @feed do |form| %> 
+<%
+=end%>
+ 
+  <%= form_with model: @feed, data: { controller: "feedback" } do |form| %>
+     <div class="mb-3" data-target="feedback.form">
+      <%
+=begin%>
+ <div class="mb-3"> 
+<%
+=end%>
+      
         <p class="text-start mb-0 mx-5 " >  <label  class="form-label">Feedback Message</label></p>
         <%= form.text_area :feedback, class: 'form-control', required: true %>
         <%=form.hidden_field :house_id, value: @house.id%>
       </div>
-      <%= form.submit :Submit, class: 'btn btn-primary' %>
+      <%= form.submit :Submit, class: 'btn btn-primary', data: {action: "click->feedback#submitForm"} %>
     <% end %>
   </div>
 
-  <div class="col-4 border border-white container ms-auto bg-dark text-white">
+  <div class="col-4 border border-white container ms-auto bg-dark text-white feedbacks-container" id="feedbackId">
     <% @feedbacks.each do |feed| %>
     <div class="d-flex justify-content-between align-items-center">
       <p class= '  mb-0 text-start p-2'><strong class='me-3'><%= feed.name %>: </strong> <%= feed.feedback %></p>
@@ -75,8 +82,6 @@
     <% end %>
    
   </div>
-
-
 
 </div> 
 

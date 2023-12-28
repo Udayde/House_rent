@@ -8,6 +8,7 @@ class PaymentService
   end
 
   def service_charge
+   
     customer = Stripe::Customer.create({
                                          email: @params[:stripeEmail],
                                          source: @params[:stripeToken]

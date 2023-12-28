@@ -5,14 +5,11 @@ require 'rails_helper'
 RSpec.describe HousesController, type: :controller do
   let(:user) { create(:user, email: 'uniq@gmail.com') }
   let(:house) { create(:house) }
-  before do
-    sign_in user
-  end
 
+  before { sign_in user }
+    
   describe '#index' do
     context 'when the user is logged in' do
-      let(:house) { create(:house) }
-
       it 'assigns @houses' do
         get :index
         expect(assigns(:houses)).to match_array([house])
@@ -20,10 +17,7 @@ RSpec.describe HousesController, type: :controller do
     end
 
     context 'when the user is not logged in' do
-      before do
-        sign_out user
-      end
-
+      before  {sign_out user}
       it 'does not assign @houses' do
         get :index
         expect(assigns(:houses)).to be_nil
@@ -32,10 +26,10 @@ RSpec.describe HousesController, type: :controller do
   end
 
   describe '#create' do
-    it 'redirect to @houses' do
+    before do 
       post :create, params: {
         house: {
-
+  
           desription: '1bhk',
           location: 'indore',
           buying_price: 1400,
@@ -45,10 +39,16 @@ RSpec.describe HousesController, type: :controller do
           available_for: 'buy'
         }
       }
-
-      # expect(response.media_type).to eq('text/html')
+    end
+    
+    it 'redirect to @houses' do
       expect(response).to redirect_to(houses_path)
     end
+
+    it "check for flash message" do
+      expect(flash[:notice]).to_not be_nil
+    end
+
   end
 
   describe '#new' do
