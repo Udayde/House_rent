@@ -16,7 +16,7 @@ class FeedsController < ApplicationController
     @feedback = Feed.new(feed_params)
     return unless @feedback.save
 
-    # redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: root_path)
   end
 
   def show; end

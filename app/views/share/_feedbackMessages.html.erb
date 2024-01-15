@@ -1,0 +1,12 @@
+        <h4 class="mbr-section-title mbr-fonts-style align-left pt-2 mb-0 display-5 " data-action="click->hello#">Feedbacks</h4>    
+<div class="mt-5 col-8 border border-white container ms-auto bg-dark text-white feedbacks-container" id="feedbackId">
+
+    <% @feedbacks.each do |feed| %>
+      <div class="d-flex justify-content-between align-items-center">
+        <p class= '  mb-0 text-start p-2'><strong class='me-3'><%= feed.name %>: </strong> <%= feed.feedback %></p>
+        <% if can? :destroy, feed %>
+        <%= link_to "delete", feed_path(feed), data:{turbo_method: :delete ,turbo_confirm:'Are you sure'}, class: "badge bg-danger"%>
+        <%end%>
+      </div>
+    <% end %>
+</div>

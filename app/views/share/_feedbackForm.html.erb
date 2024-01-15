@@ -1,0 +1,11 @@
+  <div class="border border-dark card-footer d-flex flex-column justify-content-center align-items-center shadow-lg p-3 mt-4 rounded bg-white col-6 order-1">
+    <h5 class="mbr-section-title mbr-fonts-style align-center pt-2 mb-3">Feedback Form</h5>
+    <%= form_with model: @feed, data: { controller: "feedback" } do |form| %>
+    <div class="mb-3" data-target="feedback.form">
+      <p class="text-start mb-0 mx-5 " >  <label  class="form-label">Feedback Message</label></p>
+      <%= form.text_area :feedback, class: 'form-control border-dark', required: true %>
+      <%=form.hidden_field :house_id, value: @house.id%>
+      <%=form.submit class: "btn btn-primary mt-1"%>
+    </div>
+    <% end %>
+</div>

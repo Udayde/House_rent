@@ -1,0 +1,21 @@
+<style>
+    .property-image{
+        height: 247px;
+    }
+</style>
+
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="mbr-section-head col-12 pb-4" data-controller="hello">
+        <h4 class="mbr-section-title mbr-fonts-style align-left pt-2 mb-0 display-5" data-action="click->hello#">Property Details</h4>    
+    </div>
+    
+    <div class="col-12 col-md-12 mb-5">
+    <div class="card item-wrapper">
+        <div class="item-img">
+        <%if @house.profile_image.present?%>
+        <img src="<%= (url_for(@house.profile_image)) %>" alt="house_pic" width="350px" class="border border-white property-image">
+        <%end%>
+        </div>
+    </div>
+    </div>
+</div>

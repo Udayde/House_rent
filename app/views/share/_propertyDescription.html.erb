@@ -1,0 +1,18 @@
+<div class="card item-wrapper col-6">
+    <ul class="list-group list-group-flush" style="background-color: transparent; border: none;">
+    <li class="list-group-item">House Type: <%= @house.desription%></li>
+    <li class="list-group-item">Site location: <%= @house.location%></li>
+    <% if @house.sold %>
+        <p class="btn btn-success">Sold</p>
+    <% else %>
+        <% if @house.available_for == "buy" %>
+        <li class="list-group-item">For <%= @house.available_for %>: <%= @house.buying_price %>Rs</li>
+        <%= link_to 'Payment', "#{new_payment_path}?id=#{@house.id}", class: "btn btn-primary m-1 " %>
+        <% else %>
+        <li class="list-group-item">For <%= @house.available_for %>: <%= @house.rental_price %>Rs</li>
+        <%= link_to 'Payment', "#{new_payment_path}?id=#{@house.id}", class: "btn btn-primary m-1 " %>
+        <% end %>
+    <% end %>   
+    
+    </ul>
+</div>
