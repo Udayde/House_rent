@@ -8,7 +8,9 @@ class HousesController < ApplicationController
  
   def index
     @q = House.ransack(params[:q])
-    @houses = @service.service_index(@q, params)
+    # @houses = @service.service_index(@q, params)
+    # debugger
+    @houses = @service.service_index(@q)
   end
 
   def new
@@ -28,7 +30,8 @@ class HousesController < ApplicationController
   def edit; end
 
   def update
-    @service.ser(params)
+    # @service.ser(params)
+    @service.service_update
     return unless @house.update(house_param) 
     flash[:notice] = 'success update!'
     redirect_to houses_path
@@ -48,6 +51,7 @@ class HousesController < ApplicationController
   private
 
   def set_house_service
+    # debugger
     @service = HouseService.new(@house, params, current_user)
   end
 
@@ -55,9 +59,11 @@ class HousesController < ApplicationController
     @res = params.require(:house).permit(:desription, :location, :buying_price, :rental_price, :profile_image, :available_for, :sold)
     @res[:user_id] = current_user.id
     @res
+   
   end
 
   def set_house
+    # debugger
     @house = House.find(params[:id])
   end
 end

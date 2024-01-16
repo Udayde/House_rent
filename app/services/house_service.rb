@@ -7,20 +7,23 @@ class HouseService
       @user = user
     end
   
-    def ser(params)
+    # def ser(params)
+    def service_update
       # debugger
-      @house = House.find(params[:id])
-      @house.profile_image.attach(params[:house][:profile_image]) if params[:house][:profile_image].present?
+      # @house = House.find(params[:id])
+      @house.profile_image.attach(@params[:house][:profile_image]) if @params[:house][:profile_image].present?
       @house
     end
   
-    def service_index(q, params)
-      @houses = q.result(distinct: true).page(params[:page])
+    # def service_index(q, params)
+      def service_index(q)
+      @houses = q.result(distinct: true).page(@params[:page])
       @houses
     end
   
     def service_create
       @house = House.new(house_param)
+      # debugger
       @house.profile_image.attach(@params[:house][:profile_image])
       @house
     end
